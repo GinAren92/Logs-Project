@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LogHolder {
+    private Map<String,Log> listOfLogs = new HashMap<>();
     private static final ObjectMapper objMapper = new ObjectMapper();
     static {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
@@ -17,11 +18,8 @@ public class LogHolder {
         objMapper.registerModule(javaTimeModule);
         objMapper.setDateFormat(simpleDateFormat);
     }
-    private Map<String,Log> listOfLogs = new HashMap<>();
-
-
-    public LogHolder(){
-
+    public void addLog(Log log){
+        listOfLogs.put(log.getLogId(), log);
     }
 
     public void allLogReader(User actualUser){
