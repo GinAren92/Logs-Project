@@ -8,6 +8,10 @@ public class UsersHolder {
     private List<User> listOfUsers = new ArrayList<>();
     private User actualUser=null;
 
+    public UsersHolder(){
+        listOfUsers.add(new User("admin","admin","admin"));
+        listOfUsers.add(new User("user","user","user"));
+    }
     public User getActualUser(){
         return actualUser;
     }
@@ -27,6 +31,7 @@ public class UsersHolder {
                 if (u.getLogin().equals(login) && u.getPassword().equals(password))
                     actualUser = u;
             }
+            if(actualUser==null) System.out.println("Incorrect login details");
         }
     }
 }

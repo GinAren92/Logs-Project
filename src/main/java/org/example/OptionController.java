@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class OptionController {
@@ -32,12 +33,17 @@ public class OptionController {
                     Log log = new Log(reader.readLine(), usersHolder.getActualUser());
                     logHolder.addLog(log);
                 }
-
-
-                reader.close();
+                System.out.println("Do you want to continue the program? y/n");
+                if(reader.readLine().equals("n")) break;
             } catch (Exception e) {
                 e.getMessage();
             }
+
+        }
+        try {
+            reader.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
