@@ -10,6 +10,9 @@ public class Log {
     private LocalDateTime timestamp;
     private String msg;
     private User author;
+    public Log(){
+
+    }
 
     public Log(String msg, User author){
         this.msg=msg;

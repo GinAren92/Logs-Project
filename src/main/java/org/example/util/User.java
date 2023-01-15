@@ -5,6 +5,9 @@ public class User {
     private String password;
     private String accesLevel;
 
+    public User (){
+
+    }
     public User(String login, String password, String accesLevel){
         this.accesLevel=accesLevel;
         this.login=login;

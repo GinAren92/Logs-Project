@@ -13,13 +13,18 @@ public class UsersHolder {
     private User actualUser = null;
 
     public UsersHolder(){
+        //listOfUsers = usersService.readFromFile();
         listOfUsers.add(new User("admin","admin","admin"));
         listOfUsers.add(new User("user","user","user"));
+
     }
     public User getActualUser(){
         return actualUser;
     }
     public void loging(BufferedReader reader) {
         this.actualUser = usersService.loging(reader,listOfUsers);
+    }
+    public void saveUsersToFile(){
+        usersService.writeToFile(listOfUsers);
     }
 }

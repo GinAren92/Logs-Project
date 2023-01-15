@@ -15,7 +15,8 @@ public class OptionController {
     private LogHolder logHolder = new LogHolder();
 
     public void getStarted() {
-        while (true) {
+        boolean flag = true;
+        while (flag) {
             String option = "";
             System.out.println("Do you want to review saved Logs or create a new one? review/save");
 
@@ -26,9 +27,9 @@ public class OptionController {
                 if (option.equals("review")) {
                     logHolder.allLogReader(usersHolder.getActualUser());
                     if (usersHolder.getActualUser().getAccesLevel().equals("admin")) {
-                        System.out.println("Czy chciałbyś któryś Log usunąć? y/n");
+                        System.out.println("Would you like any of the Logs removed? y/n");
                         if (reader.readLine().equals("y")) {
-                            System.out.println("Wpisz ID loga który usuwasz:");
+                            System.out.println("Enter the ID of the log you are deleting:");
                             logHolder.logRemover(reader.readLine());
                         }
                     }
@@ -38,7 +39,12 @@ public class OptionController {
                     logHolder.addLog(log);
                 }
                 System.out.println("Do you want to continue the program? y/n");
-                if(reader.readLine().equals("n")) break;
+                if(reader.readLine().equals("n")) {
+                    flag = false;
+                    logHolder.saveToFile();
+                    usersHolder.saveUsersToFile();
+
+                }
             } catch (Exception e) {
                 e.getMessage();
             }
