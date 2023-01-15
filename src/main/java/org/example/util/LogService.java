@@ -27,26 +27,29 @@ public class LogService {
         objMapper.setDateFormat(simpleDateFormat);
     }
 
-      public Map<String,Log> readFromFile(){
-        Map<String,Object> tmpMap = new HashMap<>();
-        Map<String,Log> listOfLogs = new HashMap<>();
-          try {
-              tmpMap = objMapper.readValue(new File("logs.json"), Map.class);
-          } catch (IOException e) {
-              throw new RuntimeException(e.getMessage());
-          }
-          tmpMap.forEach((key,val)->{
-              String jsnoVal = null;
-              try {
-                  jsnoVal = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(val);
-                  Log log = objMapper.readValue(jsnoVal,Log.class);
-                  listOfLogs.put(key,log);
-              } catch (JsonProcessingException e) {
-                  throw new RuntimeException(e);
-              }
-          });
-          return listOfLogs;
-      }
+    public Map<String,Log> readFromFile() {
+        Map<String, Object> tmpMap = new HashMap<>();
+        Map<String, Log> listOfLogs = new HashMap<>();
+        File file = new File("logs.json");
+        if (file.exists()) {
+            try {
+                tmpMap = objMapper.readValue(new File("logs.json"), Map.class);
+            } catch (IOException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+            tmpMap.forEach((key, val) -> {
+                String jsnoVal = null;
+                try {
+                    jsnoVal = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(val);
+                    Log log = objMapper.readValue(jsnoVal, Log.class);
+                    listOfLogs.put(key, log);
+                } catch (JsonProcessingException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+            return listOfLogs;
+    }
     public void writeToFile(Map<String,Log> listOfLogs){
         try {
             objMapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("logs.json").toFile(),listOfLogs);

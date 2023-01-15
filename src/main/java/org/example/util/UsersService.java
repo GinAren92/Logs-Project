@@ -38,14 +38,11 @@ public class UsersService {
         return usersFromFile;
     }
     public void writeToFile(List<User> listOfUsers){
-          File users = new File("users.json");
-          if(users.exists()){
             try {
-                objWriter.writeValue(Paths.get("users.json").toFile(),listOfUsers);
+                objMapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("users.json").toFile(),listOfUsers);
             } catch (IOException e) {
-                throw new RuntimeException("Metoda zapisywania Userów");
+                throw new RuntimeException(e.getMessage());
             }
-          }
     }
     public User loging(BufferedReader reader, List<User> listOfUsers) {
         User actualUser = null;

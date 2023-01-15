@@ -13,10 +13,11 @@ public class UsersHolder {
     private User actualUser = null;
 
     public UsersHolder(){
-        //listOfUsers = usersService.readFromFile();
-        listOfUsers.add(new User("admin","admin","admin"));
-        listOfUsers.add(new User("user","user","user"));
-
+        listOfUsers = usersService.readFromFile();
+        if(listOfUsers.isEmpty()){
+            listOfUsers.add(new User("admin","admin","admin"));
+            listOfUsers.add(new User("user","user","user"));
+        }
     }
     public User getActualUser(){
         return actualUser;
