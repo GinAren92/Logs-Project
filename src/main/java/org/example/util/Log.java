@@ -1,10 +1,7 @@
-package org.example;
+package org.example.util;
 
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.UUID;
 
 public class Log {

@@ -1,4 +1,8 @@
-package org.example;
+package org.example.util;
+
+import org.example.cache.LogHolder;
+import org.example.cache.UsersHolder;
+import org.example.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;

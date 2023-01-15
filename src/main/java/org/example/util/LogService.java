@@ -1,16 +1,15 @@
-package org.example;
+package org.example.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.Map;
 
-public class LogHolder {
-    private Map<String,Log> listOfLogs = new HashMap<>();
+public class LogService {
+
+
     private static final ObjectMapper objMapper = new ObjectMapper();
     static {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
@@ -18,11 +17,8 @@ public class LogHolder {
         objMapper.registerModule(javaTimeModule);
         objMapper.setDateFormat(simpleDateFormat);
     }
-    public void addLog(Log log){
-        listOfLogs.put(log.getLogId(), log);
-    }
 
-    public void allLogReader(User actualUser){
+    public void allLogReader(User actualUser, Map<String,Log> listOfLogs){
 
         listOfLogs.forEach((key,value)->{
             if(checkAccesLvl(value, actualUser)) {
@@ -33,7 +29,7 @@ public class LogHolder {
                 System.out.println("Autor: "+value.getAuthor().getLogin());
             }
         });
-        }
+    }
 
     public boolean checkAccesLvl(Log log,User actualUser){
         if(actualUser.getAccesLevel().equals(log.getAuthor().getAccesLevel()))
@@ -41,8 +37,5 @@ public class LogHolder {
         else if(actualUser.getAccesLevel().equals("admin"))
             return true;
         return false;
-    }
-    public void logRemover(String id){
-        listOfLogs.remove(id);
     }
 }
