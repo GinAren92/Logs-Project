@@ -1,25 +1,18 @@
 package org.example.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class LogService {
-
-
     private static final ObjectMapper objMapper = new ObjectMapper();
-    private static final ObjectWriter objWriter = objMapper.writer(new DefaultPrettyPrinter());
     static {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         JavaTimeModule javaTimeModule = new JavaTimeModule();
@@ -44,7 +37,7 @@ public class LogService {
                     Log log = objMapper.readValue(jsnoVal, Log.class);
                     listOfLogs.put(key, log);
                 } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
+                    throw new RuntimeException(e.getMessage());
                 }
             });
         }
@@ -54,7 +47,7 @@ public class LogService {
         try {
             objMapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("logs.json").toFile(),listOfLogs);
         } catch (IOException e) {
-            throw new RuntimeException("Metoda zapisywania Logow");
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -65,9 +58,9 @@ public class LogService {
             if(checkAccesLvl(value, actualUser)) {
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
                 System.out.println("Log ID: "+key);
-                System.out.println("Data utworzenia: "+value.getTimestamp().format(format));
-                System.out.println("Wiadomość: "+value.getMsg());
-                System.out.println("Autor: "+value.getAuthor().getLogin());
+                System.out.println("Date of creation: "+value.getTimestamp().format(format));
+                System.out.println("The message: "+value.getMsg());
+                System.out.println("Author: "+value.getAuthor().getLogin());
                 System.out.println("___________________________________________________________");
             }
         });
