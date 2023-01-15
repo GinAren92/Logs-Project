@@ -1,10 +1,7 @@
-package org.example;
+package org.example.util;
 
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.UUID;
 
 public class Log {
@@ -13,6 +10,9 @@ public class Log {
     private LocalDateTime timestamp;
     private String msg;
     private User author;
+    public Log(){
+
+    }
 
     public Log(String msg, User author){
         this.msg=msg;
