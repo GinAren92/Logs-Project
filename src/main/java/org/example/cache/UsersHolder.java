@@ -15,8 +15,8 @@ public class UsersHolder {
     public UsersHolder(){
         listOfUsers = usersService.readFromFile();
         if(listOfUsers.isEmpty()){
-            listOfUsers.add(new User("admin","admin","admin"));
-            listOfUsers.add(new User("user","user","user"));
+            listOfUsers.add(new User("admin@admin.pl","Admin!1","admin"));
+            listOfUsers.add(new User("user1@user.com","User#!1","user"));
         }
     }
     public User getActualUser(){
