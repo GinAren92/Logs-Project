@@ -31,7 +31,7 @@ public class UsersService {
             try {
                 usersFromFile = Arrays.asList(objMapper.readValue(Paths.get("users.json").toFile(), User[].class));
             } catch (IOException e) {
-                throw new RuntimeException("Metoda wczytywania z pliku Users");
+                throw new RuntimeException(e.getMessage());
             }
         }
 

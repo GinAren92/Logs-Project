@@ -6,7 +6,7 @@ public class User {
     private String accesLevel;
 
     public User (){
-
+        // for Object Mapper
     }
     public User(String login, String password, String accesLevel){
         this.accesLevel=accesLevel;

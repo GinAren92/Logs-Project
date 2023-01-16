@@ -31,10 +31,10 @@ public class LogService {
                 throw new RuntimeException(e.getMessage());
             }
             tmpMap.forEach((key, val) -> {
-                String jsnoVal = null;
+                String jsonVal = null;
                 try {
-                    jsnoVal = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(val);
-                    Log log = objMapper.readValue(jsnoVal, Log.class);
+                    jsonVal = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(val);
+                    Log log = objMapper.readValue(jsonVal, Log.class);
                     listOfLogs.put(key, log);
                 } catch (JsonProcessingException e) {
                     throw new RuntimeException(e.getMessage());
@@ -55,7 +55,7 @@ public class LogService {
     public void allLogReader(User actualUser, Map<String,Log> listOfLogs){
 
         listOfLogs.forEach((key,value)->{
-            if(checkAccesLvl(value, actualUser)) {
+            if(checkAcces(value, actualUser)) {
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
                 System.out.println("Log ID: "+key);
                 System.out.println("Date of creation: "+value.getTimestamp().format(format));
@@ -66,7 +66,7 @@ public class LogService {
         });
     }
 
-    public boolean checkAccesLvl(Log log,User actualUser){
+    public boolean checkAcces(Log log,User actualUser){
         if(actualUser.getAccesLevel().equals(log.getAuthor().getAccesLevel()))
             return true;
         else if(actualUser.getAccesLevel().equals("admin"))
