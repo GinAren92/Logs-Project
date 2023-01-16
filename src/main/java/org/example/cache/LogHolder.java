@@ -22,9 +22,6 @@ public class LogHolder {
         logService.allLogReader(actualUser,listOfLogs);
     }
 
-    public boolean checkAccesLvl(Log log,User actualUser){
-        return logService.checkAccesLvl(log,actualUser);
-    }
     public void logRemover(String id){
         listOfLogs.remove(id);
     }
