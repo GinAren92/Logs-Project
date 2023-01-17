@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsersHolder {
-    private List<User> listOfUsers = new ArrayList<>();
+    private List<User> listOfUsers;
     private final UsersService usersService = new UsersService();
     private User actualUser = null;
 
@@ -23,7 +23,7 @@ public class UsersHolder {
         return actualUser;
     }
     public void loging(BufferedReader reader) {
-        this.actualUser = usersService.loging(reader,listOfUsers);
+        this.actualUser = usersService.logging(reader,listOfUsers);
     }
     public void saveUsersToFile(){
         usersService.writeToFile(listOfUsers);
