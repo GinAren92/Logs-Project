@@ -11,15 +11,7 @@ public class OptionService {
     static void reviewOption(LogHolder logHolder, UsersHolder usersHolder, BufferedReader reader){
         logHolder.allLogReader(usersHolder.getActualUser());
         if (usersHolder.getActualUser().getAccesLevel().equals("admin")) {
-            System.out.println("Would you like any of the Logs removed? y/n");
-            try {
-                if (reader.readLine().equals("y")) {
-                    System.out.println("Enter the ID of the log you are deleting:");
-                    logHolder.logRemover(reader.readLine());
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            removeLog(logHolder,reader);
         }
     }
 
@@ -46,5 +38,16 @@ public class OptionService {
             throw new RuntimeException(e);
         }
         return true;
+    }
+    static private void removeLog(LogHolder logHolder, BufferedReader reader){
+        System.out.println("Would you like any of the Logs removed? y/n");
+        try {
+            if (reader.readLine().equals("y")) {
+                System.out.println("Enter the ID of the log you are deleting:");
+                logHolder.logRemover(reader.readLine());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
