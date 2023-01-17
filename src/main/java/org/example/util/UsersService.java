@@ -1,8 +1,6 @@
 package org.example.util;
 
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.BufferedReader;
@@ -16,7 +14,6 @@ import java.util.List;
 
 public class UsersService {
     private static final ObjectMapper objMapper = new ObjectMapper();
-    private static final ObjectWriter objWriter = objMapper.writer(new DefaultPrettyPrinter());
     static {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         JavaTimeModule javaTimeModule = new JavaTimeModule();
@@ -44,7 +41,7 @@ public class UsersService {
                 throw new RuntimeException(e.getMessage());
             }
     }
-    public User loging(BufferedReader reader, List<User> listOfUsers) {
+    public User logging(BufferedReader reader, List<User> listOfUsers) {
         User actualUser = null;
         while(actualUser==null) {
             System.out.println("Login: ");
@@ -56,10 +53,10 @@ public class UsersService {
             } catch (Exception e) {
                 e.getMessage();
             }
-            for (User u :
+            for (User user :
                     listOfUsers) {
-                if (u.getLogin().equals(login) && u.getPassword().equals(password))
-                    actualUser = u;
+                if (user.getLogin().equals(login) && user.getPassword().equals(password))
+                    actualUser = user;
             }
             if(actualUser==null) System.out.println("Incorrect login details");
         }
