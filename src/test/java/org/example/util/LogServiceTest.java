@@ -8,22 +8,37 @@ class LogServiceTest {
     private final LogService objectUnderTest = new LogService();
 
     @org.junit.jupiter.api.Test
-    void allLogReaderIfShouldBeFalse() {
+    void checkAccesLvlIfShouldBeTrue() {
         //given
-        User user = new User("test1@domain.pl","Test1!","user");
-        User admin = new User("test2@domain.pl","Test1!","admin");
-        LogHolder logHolder = new LogHolder();
-        Log log = new Log("JUnit test msg",admin);
+        User user1 = new User("user1@user.pl", "User!1","user");
+        User user2 = new User("user2@user.pl", "User!1","user");
+        Log log = new Log("",user1);
         //when
-        logHolder.addLog(log);
-        User actualUser = user;
+        boolean acces = LogService.checkAcces(log,user2);
         //then
+        assertTrue(acces);
     }
     @org.junit.jupiter.api.Test
-    void allLogReaderIfShouldBeTrue() {
+    void checkAccesLvlShouldReturnTrueForAdmin() {
+        //given
+        User user1 = new User("user1@user.pl", "User!1","user");
+        User user2 = new User("user2@user.pl", "User!1","admin");
+        Log log = new Log("",user1);
+        //when
+        boolean acces = LogService.checkAcces(log,user2);
+        //then
+        assertTrue(acces);
+    }
+    @org.junit.jupiter.api.Test
+    void checkAccesLvlShouldBeFalseForUser() {
+        //given
+        User user1 = new User("user1@user.pl", "User!1","admin");
+        User user2 = new User("user2@user.pl", "User!1","user");
+        Log log = new Log("",user1);
+        //when
+        boolean acces = LogService.checkAcces(log,user2);
+        //then
+        assertFalse(acces);
     }
 
-    @org.junit.jupiter.api.Test
-    void checkAccesLvl() {
-    }
 }
