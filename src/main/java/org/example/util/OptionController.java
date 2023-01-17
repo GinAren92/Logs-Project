@@ -20,6 +20,9 @@ public class OptionController {
             System.out.println("Do you want to review saved Logs or create a new one? review/save");
             try {
                 option = reader.readLine();
+            } catch (Exception e) {
+                e.getMessage();
+            }
                 usersHolder.loging(reader);
                 if (option.equals("review")) {
                     OptionService.reviewOption(logHolder,usersHolder,reader);
@@ -27,9 +30,6 @@ public class OptionController {
                     OptionService.saveOption(logHolder,usersHolder,reader);
                 }
                 flag = OptionService.exitOption(logHolder,usersHolder,reader);
-            } catch (Exception e) {
-                e.getMessage();
-            }
         }
         try {
             reader.close();
