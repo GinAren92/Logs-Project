@@ -13,12 +13,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UsersService {
-    private static final ObjectMapper objMapper = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     static {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         JavaTimeModule javaTimeModule = new JavaTimeModule();
-        objMapper.registerModule(javaTimeModule);
-        objMapper.setDateFormat(simpleDateFormat);
+        OBJECT_MAPPER.registerModule(javaTimeModule);
+        OBJECT_MAPPER.setDateFormat(simpleDateFormat);
     }
 
     public List<User> readFromFile(){
@@ -26,7 +26,7 @@ public class UsersService {
         File users = new File("users.json");
         if(users.exists()){
             try {
-                usersFromFile = Arrays.asList(objMapper.readValue(Paths.get("users.json").toFile(), User[].class));
+                usersFromFile = Arrays.asList(OBJECT_MAPPER.readValue(Paths.get("users.json").toFile(), User[].class));
             } catch (IOException e) {
                 throw new RuntimeException(e.getMessage());
             }
@@ -35,7 +35,7 @@ public class UsersService {
     }
     public void writeToFile(List<User> listOfUsers){
             try {
-                objMapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("users.json").toFile(),listOfUsers);
+                OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValue(Paths.get("users.json").toFile(),listOfUsers);
             } catch (IOException e) {
                 throw new RuntimeException(e.getMessage());
             }

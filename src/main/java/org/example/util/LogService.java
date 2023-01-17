@@ -11,12 +11,12 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class LogService {
-    private static final ObjectMapper objMapper = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     static {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         JavaTimeModule javaTimeModule = new JavaTimeModule();
-        objMapper.registerModule(javaTimeModule);
-        objMapper.setDateFormat(simpleDateFormat);
+        OBJECT_MAPPER.registerModule(javaTimeModule);
+        OBJECT_MAPPER.setDateFormat(simpleDateFormat);
     }
 
     public Map<String,Log> readFromFile() {
@@ -25,15 +25,15 @@ public class LogService {
         File file = new File("logs.json");
         if (file.exists()) {
             try {
-                tmpMap = objMapper.readValue(new File("logs.json"), Map.class);
+                tmpMap = OBJECT_MAPPER.readValue(new File("logs.json"), Map.class);
             } catch (IOException e) {
                 throw new RuntimeException(e.getMessage());
             }
             tmpMap.forEach((key, val) -> {
                 String jsonVal = null;
                 try {
-                    jsonVal = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(val);
-                    Log log = objMapper.readValue(jsonVal, Log.class);
+                    jsonVal = OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(val);
+                    Log log = OBJECT_MAPPER.readValue(jsonVal, Log.class);
                     listOfLogs.put(key, log);
                 } catch (JsonProcessingException e) {
                     throw new RuntimeException(e.getMessage());
@@ -44,7 +44,7 @@ public class LogService {
     }
     public void writeToFile(Map<String,Log> listOfLogs){
         try {
-            objMapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("logs.json").toFile(),listOfLogs);
+            OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValue(Paths.get("logs.json").toFile(),listOfLogs);
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
