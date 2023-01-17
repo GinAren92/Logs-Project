@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LogHolder {
-    private Map<String, Log> listOfLogs = new HashMap<>();
+    private Map<String, Log> listOfLogs;
     private final LogService logService = new LogService();
 
     public LogHolder(){

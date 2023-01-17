@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class LogService {
@@ -53,20 +52,10 @@ public class LogService {
 
 
     public void allLogReader(User actualUser, Map<String,Log> listOfLogs){
-
-        listOfLogs.forEach((key,value)->{
-            if(checkAcces(value, actualUser)) {
-                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-                System.out.println("Log ID: "+key);
-                System.out.println("Date of creation: "+value.getTimestamp().format(format));
-                System.out.println("The message: "+value.getMsg());
-                System.out.println("Author: "+value.getAuthor().getLogin());
-                System.out.println("___________________________________________________________");
-            }
-        });
+        LogsPrinter.allLogReader(actualUser,listOfLogs);
     }
 
-    public boolean checkAcces(Log log,User actualUser){
+    public static boolean checkAcces(Log log,User actualUser){
         if(actualUser.getAccesLevel().equals(log.getAuthor().getAccesLevel()))
             return true;
         else if(actualUser.getAccesLevel().equals("admin"))
