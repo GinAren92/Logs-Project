@@ -31,7 +31,6 @@ public class UsersService {
                 throw new RuntimeException(e.getMessage());
             }
         }
-
         return usersFromFile;
     }
     public void writeToFile(List<User> listOfUsers){
@@ -44,20 +43,8 @@ public class UsersService {
     public User logging(BufferedReader reader, List<User> listOfUsers) {
         User actualUser = null;
         while(actualUser==null) {
-            System.out.println("Login: ");
-            String login = "", password = "";
-            try {
-                login = reader.readLine();
-                System.out.println("Password: ");
-                password = reader.readLine();
-            } catch (Exception e) {
-                e.getMessage();
-            }
-            for (User user :
-                    listOfUsers) {
-                if (user.getLogin().equals(login) && user.getPassword().equals(password))
-                    actualUser = user;
-            }
+            String[] loginAndPassword = UserValidator.getLogInDetail(reader);
+            actualUser = UserValidator.searchOnUsersList(listOfUsers,loginAndPassword[0],loginAndPassword[1]);
             if(actualUser==null) System.out.println("Incorrect login details");
         }
         return actualUser;
