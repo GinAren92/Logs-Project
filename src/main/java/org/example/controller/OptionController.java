@@ -1,7 +1,8 @@
-package org.example.util;
+package org.example.controller;
 
 import org.example.cache.LogHolder;
 import org.example.cache.UsersHolder;
+import org.example.service.OptionService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class OptionController {
             System.out.println("Do you want to review saved Logs or create a new one? review/save");
             try {
                 option = reader.readLine();
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.getMessage();
             }
                 usersHolder.loging(reader);

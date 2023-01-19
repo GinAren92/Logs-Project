@@ -1,14 +1,13 @@
 package org.example.cache;
 
 import org.example.util.User;
-import org.example.util.UsersService;
+import org.example.service.UsersService;
 
 import java.io.BufferedReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UsersHolder {
-    private List<User> listOfUsers;
+    private final List<User> listOfUsers;
     private final UsersService usersService = new UsersService();
     private User actualUser = null;
 

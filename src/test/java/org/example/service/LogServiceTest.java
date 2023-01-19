@@ -1,6 +1,8 @@
-package org.example.util;
+package org.example.service;
 
-import org.example.cache.LogHolder;
+import org.example.service.LogService;
+import org.example.util.Log;
+import org.example.util.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 

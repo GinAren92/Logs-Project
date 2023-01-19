@@ -1,10 +1,12 @@
-package org.example.util;
+package org.example.service;
+
+import org.example.util.User;
 
 import java.io.BufferedReader;
 import java.util.List;
 
-public class UserValidator {
-    protected static String[] getLogInDetail(BufferedReader reader){
+public class UserValidation {
+    public static String[] getLogInDetail(BufferedReader reader){
         System.out.println("Login: ");
         String login = "", password = "";
         try {
@@ -16,7 +18,7 @@ public class UserValidator {
         }
         return new String[]{login,password};
     }
-    protected static User searchOnUsersList(List<User> listOfUsers, String login, String password){
+    public static User searchOnUsersList(List<User> listOfUsers, String login, String password){
         for (User user :
                 listOfUsers) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password))
