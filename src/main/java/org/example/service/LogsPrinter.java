@@ -1,10 +1,13 @@
-package org.example.util;
+package org.example.service;
+
+import org.example.util.Log;
+import org.example.util.User;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public class LogsPrinter {
-    public static void allLogReader(User actualUser, Map<String,Log> listOfLogs){
+    public static void allLogReader(User actualUser, Map<String, Log> listOfLogs){
 
         listOfLogs.forEach((key,value)->{
             if(LogService.checkAcces(value, actualUser)) {

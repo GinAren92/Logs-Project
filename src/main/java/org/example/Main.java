@@ -1,10 +1,10 @@
 package org.example;
 
-import org.example.util.OptionController;
+import org.example.controller.OptionController;
 
 public class Main {
     public static void main(String[] args) {
-        OptionController optionController = new OptionController();
+        final OptionController optionController = new OptionController();
         optionController.getStarted();
     }
 }

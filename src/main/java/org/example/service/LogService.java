@@ -1,8 +1,10 @@
-package org.example.util;
+package org.example.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.example.util.Log;
+import org.example.util.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +21,7 @@ public class LogService {
         OBJECT_MAPPER.setDateFormat(simpleDateFormat);
     }
 
-    public Map<String,Log> readFromFile() {
+    public Map<String, Log> readFromFile() {
         Map<String, Object> tmpMap = new HashMap<>();
         Map<String, Log> listOfLogs = new HashMap<>();
         File file = new File("logs.json");
@@ -49,7 +51,6 @@ public class LogService {
             throw new RuntimeException(e.getMessage());
         }
     }
-
 
     public void allLogReader(User actualUser, Map<String,Log> listOfLogs){
         LogsPrinter.allLogReader(actualUser,listOfLogs);

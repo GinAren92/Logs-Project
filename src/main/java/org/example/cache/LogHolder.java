@@ -1,13 +1,13 @@
 package org.example.cache;
 
 import org.example.util.Log;
-import org.example.util.LogService;
+import org.example.service.LogService;
 import org.example.util.User;
-import java.util.HashMap;
+
 import java.util.Map;
 
 public class LogHolder {
-    private Map<String, Log> listOfLogs;
+    private final Map<String, Log> listOfLogs;
     private final LogService logService = new LogService();
 
     public LogHolder(){

@@ -1,7 +1,8 @@
-package org.example.util;
+package org.example.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.example.util.User;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,8 +44,8 @@ public class UsersService {
     public User logging(BufferedReader reader, List<User> listOfUsers) {
         User actualUser = null;
         while(actualUser==null) {
-            String[] loginAndPassword = UserValidator.getLogInDetail(reader);
-            actualUser = UserValidator.searchOnUsersList(listOfUsers,loginAndPassword[0],loginAndPassword[1]);
+            String[] loginAndPassword = UserValidation.getLogInDetail(reader);
+            actualUser = UserValidation.searchOnUsersList(listOfUsers,loginAndPassword[0],loginAndPassword[1]);
             if(actualUser==null) System.out.println("Incorrect login details");
         }
         return actualUser;
