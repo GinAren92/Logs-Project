@@ -5,12 +5,16 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Log {
-    private String logId;
-    private LocalDateTime timestamp;
-    private String msg;
-    private User author;
+    private final String logId;
+    private final LocalDateTime timestamp;
+    private final String msg;
+    private final User author;
     public Log(){
         //for Object Mapper
+        author = null;
+        logId = null;
+        timestamp = null;
+        msg = null;
     }
 
     public Log(String msg, User author){

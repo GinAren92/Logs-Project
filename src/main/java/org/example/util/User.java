@@ -1,12 +1,15 @@
 package org.example.util;
 
 public class User {
-    private String login;
-    private String password;
-    private String accesLevel;
+    private final String login;
+    private final String password;
+    private final String accesLevel;
 
     public User (){
         // for Object Mapper
+        accesLevel = null;
+        login = null;
+        password = null;
     }
     public User(String login, String password, String accesLevel){
         this.accesLevel=accesLevel;

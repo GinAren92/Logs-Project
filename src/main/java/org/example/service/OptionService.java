@@ -3,7 +3,6 @@ package org.example.service;
 import org.example.cache.LogHolder;
 import org.example.cache.UsersHolder;
 import org.example.util.Log;
-import org.example.util.MyVoidException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
