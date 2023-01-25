@@ -32,6 +32,7 @@ public class UsersService {
                 throw new Error(e);
             }
         }
+        System.out.println(usersFromFile.size());
         return usersFromFile;
     }
     public void writeToFile(List<User> listOfUsers){
