@@ -22,7 +22,7 @@ public class OptionService {
         try {
             log = new Log(reader.readLine(), usersHolder.getActualUser());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new Error(e);
         }
         logHolder.addLog(log);
     }
@@ -36,7 +36,7 @@ public class OptionService {
                 return false;
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new Error(e);
         }
         return true;
     }
@@ -48,7 +48,7 @@ public class OptionService {
                 logHolder.logRemover(reader.readLine());
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new Error(e);
         }
     }
 }

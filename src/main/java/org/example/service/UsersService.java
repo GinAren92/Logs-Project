@@ -29,7 +29,7 @@ public class UsersService {
             try {
                 usersFromFile = Arrays.asList(OBJECT_MAPPER.readValue(Paths.get("users.json").toFile(), User[].class));
             } catch (IOException e) {
-                throw new RuntimeException(e.getMessage());
+                throw new Error(e);
             }
         }
         return usersFromFile;
@@ -38,7 +38,7 @@ public class UsersService {
             try {
                 OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValue(Paths.get("users.json").toFile(),listOfUsers);
             } catch (IOException e) {
-                throw new RuntimeException(e.getMessage());
+                throw new Error(e);
             }
     }
     public User logging(BufferedReader reader, List<User> listOfUsers) {

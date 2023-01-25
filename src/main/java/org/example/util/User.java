@@ -16,24 +16,26 @@ public class User {
         if(checkLogin(login)){
             this.login=login;
         }else throw new IllegalArgumentException("Login should be the same format like email adres ex. atLeast5Char@domain.com or ..@domain.pl");
-        if(checkPasword(password)){
+        if(checkPassword(password)){
             this.password=password;
         }else throw new IllegalArgumentException("Password has to contain at least: one special character, one upper case letter and one number.");
     }
 
-    private boolean checkLogin(String login){
-        if(login.contains("@")){
+    public boolean checkLogin(String login){
+        if(login.contains("@") && login.length()>6){
             String[] splitedLogin = login.split("@");
-            if(splitedLogin[0].length()>=5){
-                String[] afterAtSymbol = splitedLogin[1].split("\\.");
-                if(afterAtSymbol.length<3){
-                    if(afterAtSymbol[1].equals("pl") || afterAtSymbol[1].equals("com")) return true;
+            if(splitedLogin[0].length()>=5 && splitedLogin.length == 2){
+                if(splitedLogin[1].contains(".")) {
+                    String[] afterAtSymbol = splitedLogin[1].split("\\.");
+                    if (afterAtSymbol.length < 3) {
+                        if (afterAtSymbol[1].equals("pl") || afterAtSymbol[1].equals("com")) return true;
+                    }
                 }
             }
         }
         return false;
     }
-    private boolean checkPasword(String password){
+    public boolean checkPassword(String password){
         char[] tmpCharArray = password.toCharArray();
         int upperCase = 0, specialChar = 0, numberChar = 0;
         for(char c : tmpCharArray){
